@@ -4,11 +4,11 @@
   "description": "UI part for GroupTodoMVC",
   "main": "index.js",
   "scripts": {
-    "build:dev": "rimraf dist/* && webpack --config webpack.config.dev.js",
+    "build:dev": "rimraf dist/* && webpack",
     "build:prod": "rimraf dist/* && webpack --config webpack.config.prod.js",
     "serve": "node autolaunch.js && webpack-dev-server --hot --content-base dist/",
     "serve:dev": "npm run build:dev && npm run serve",
-    "serve:prod": "npm run build:prod && node autolaunch.js && webpack-dev-server --content-base dist/",
+    "serve:prod": "npm run build:prod && node autolaunch.js && webpack-dev-server --config webpack.config.prod.js --content-base dist/",
     "test": "karma",
     "clean": "rimraf dist/*"
   },
