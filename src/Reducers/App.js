@@ -2,7 +2,7 @@
  * Created by aru on 12/22/2015.
  */
 import {combineReducers} from 'redux';
-import {SelectedTodos} from './SelectedTodos';
-import {Todo} from './Todo';
-
-export default combineReducers(SelectedTodos, Todo);
+import {todos} from './SelectedTodos';
+import {todo} from './Todo';
+let reducers = combineReducers({todos, todo});
+export default combineReducers({todos, todo});

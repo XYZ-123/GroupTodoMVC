@@ -5,4 +5,4 @@ import {createAction} from 'redux-actions';
 
 export const LOAD_TODOS = 'LOAD_TODOS';
 
-export default createAction(LOAD_TODOS,({todos = []})=>{todos});
+export default createAction(LOAD_TODOS);

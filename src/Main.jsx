@@ -1,7 +1,7 @@
 // lib imports
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {Provider} from 'react-redux';
@@ -12,6 +12,7 @@ import {Statistics} from './Components/Statistics/Statistics';
 import {TodoList} from './Components/TodoList/TodoList';
 import getRoutes from './Routes';
 import rootReducer from './Reducers/App';
+import LoadTodos from './Actions/LoadTodos';
 
 export class MainWindow extends React.Component {
     constructor(props)
@@ -26,6 +27,7 @@ export class MainWindow extends React.Component {
                         <li><Link to="Todos">Todo List</Link></li>
                         <li><Link to="Stats">Completion Statistics</Link></li>
                         </ul>
+                    {this.props.children}
                 </div>);
     }
 }
@@ -33,9 +35,12 @@ export class MainWindow extends React.Component {
 
 
 let createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
 let store = createStoreWithMiddleware(rootReducer);
 let history = createBrowserHistory();
 
+store.dispatch(LoadTodos());
+console.log(store.getState());
 ReactDOM.render(<Provider store={store}>
                     <Router history={history}>
                         {getRoutes()}
