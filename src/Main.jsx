@@ -12,7 +12,7 @@ import {Router, Link} from 'react-router';
 import {Statistics} from './Components/Statistics/Statistics';
 import {TodoList} from './Components/TodoList/TodoList';
 import getRoutes from './Routes';
-import rootReducer from './Reducers/RootReducer';
+import rootReducer from './Reducers/App';
 
 export class MainWindow extends React.Component {
     constructor(props)
