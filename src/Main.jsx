@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import {syncReduxAndRouter, routeReducer} from 'redux-simple-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {Provider} from 'react-redux';
 import {Router, Link} from 'react-router';
@@ -31,15 +30,11 @@ export class MainWindow extends React.Component {
     }
 }
 
-let reducer = combineReducers(Object.assign({}, rootReducer, {
-    routing: routeReducer
-}));
+
 
 let createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-let store = createStoreWithMiddleware(reducer);
+let store = createStoreWithMiddleware(rootReducer);
 let history = createBrowserHistory();
-
-syncReduxAndRouter(history, store);
 
 ReactDOM.render(<Provider store={store}>
                     <Router history={history}>
