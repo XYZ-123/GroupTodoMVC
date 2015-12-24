@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import actions from '../../Actions/actionTypes';
 
 const mapStateToProps = (state) =>
-{
+    ({
     todos: state.todos
-};
+});
 
 export class TodoList extends React.Component {
     static propTypes = {
@@ -18,7 +18,7 @@ export class TodoList extends React.Component {
     }
     render()
     {
-        console.log(this.props.todos);
+        console.log(this.props);
         return (<div>Hello from todoList</div>);
     }
 }
