@@ -2,9 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import actions from '../../Actions/actions';
-import {Todo} from './Todo';
+import {Todo} from './Todo/Todo';
 import {TodoCreateForm} from './TodoCreateForm';
 import createGuid from '../../Helper/Guid';
+import {Toolbar} from './Toolbar';
+import {TodoEditForm} from './TodoCreateForm';
 
 const mapStateToProps = (state) =>
     ({
@@ -12,9 +14,11 @@ const mapStateToProps = (state) =>
 });
 
 export class TodoList extends React.Component {
+
     static propTypes = {
         todos: React.PropTypes.array
     };
+
     constructor(props)
     {
         super(props);
@@ -22,26 +26,21 @@ export class TodoList extends React.Component {
     handleTodoCreate(title)
     {
         let id = createGuid();
-        this.props.CreateTodo({id,title});
+        this.props.CreateTodo({id, title});
     }
     handleTodoSelect(id, isSelected)
     {
         var todoToUpdate = this.props.todos.find((todo) => todo.id === id);
-        this.handleTodoUpdate(todoToUpdate.id, todoToUpdate.title, isSelected, todoToUpdate.isCompleted, todoToUpdate.isEdited);
+        this.props.UpdateTodo(Object.assign({},todoToUpdate,{isSelected}));
     }
     handleTodoComplete(id, isCompleted = true)
     {
         var todoToUpdate = this.props.todos.find((todo) => todo.id === id);
-        this.handleTodoUpdate(todoToUpdate.id, todoToUpdate.title, todoToUpdate.isSelected, isCompleted, todoToUpdate.isEdited);
+        this.props.UpdateTodo(Object.assign({},todoToUpdate,{isCompleted}));
     }
-    handleTodoEdit(id, isEdited = true)
-    {
+    handleTodoEditChange(id, isEdited = true) {
         var todoToUpdate = this.props.todos.find((todo) => todo.id === id);
-        this.handleTodoUpdate(todoToUpdate.id, todoToUpdate.title, todoToUpdate.isSelected, todoToUpdate.isCompleted, isEdited);
-    }
-    handleTodoUpdate(id, title, isSelected, isCompleted, isEdited)
-    {
-        this.props.UpdateTodo({id, title, isSelected, isCompleted, isEdited});
+        this.props.UpdateTodo(Object.assign({}, todoToUpdate, {isEdited}));
     }
     handleTodoDelete(id)
     {
@@ -51,11 +50,23 @@ export class TodoList extends React.Component {
     {
         console.log(this.props);
         let self = this;
-        let todos = this.props.todos.map((todo)=><Todo {...todo} handleTodoSelect={self.handleTodoSelect.bind(self)} handleTodoComplete={self.handleTodoComplete.bind(self)} handleTodoEdit={self.handleTodoEdit.bind(self)} handleTodoDelete={self.handleTodoDelete.bind(self)} />)
+        let todoElems = this.props.todos.map( todo =>  <Todo
+                                                        todo={todo}
+                                                        handleTodoUpdate={self.props.UpdateTodo}
+                                                        handleTodoSelect={self.handleTodoSelect.bind(self)}
+                                                        handleTodoComplete={self.handleTodoComplete.bind(self)}
+                                                        handleTodoEditChange={self.handleTodoEditChange.bind(self)}
+                                                        handleTodoDelete={self.handleTodoDelete.bind(self)} />);
+
+        var selected = this.props.todos.some(todo => todo.isSelected);
 
         return (<div>
                     <TodoCreateForm handleCreateTodo={this.handleTodoCreate.bind(this)} />
-                    {todos}
+                    <Toolbar selected={selected}
+                             handleSelectionChange={self.props.ToggleSelectionAll}
+                             handleDelete={self.props.DeleteSelectedTodos}
+                             handleComplete={self.props.UpdateSelectedTodos} />
+                    {todoElems}
                 </div>);
     }
 }

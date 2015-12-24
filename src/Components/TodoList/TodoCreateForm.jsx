@@ -10,7 +10,7 @@ export class TodoCreateForm extends React.Component {
     render ()
     {
         return (<div>
-                    <input ref="title" value={this.props.title}/>&nbsp;
+                    <input ref="title" />&nbsp;
                     <button  onClick={this.onSave.bind(this)}>Save</button>
                 </div>)
     }
