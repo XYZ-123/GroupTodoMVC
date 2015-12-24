@@ -15,7 +15,7 @@ import {TodoList} from './Components/TodoList/TodoList';
 import getRoutes from './Routes';
 import {reducers} from './Reducers/App';
 import LoadTodos from './Actions/LoadTodos';
-
+import './Main.less';
 
 export class MainWindow extends React.Component {
     constructor(props)

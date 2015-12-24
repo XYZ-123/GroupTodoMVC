@@ -5,8 +5,9 @@ import actions from '../../Actions/actions';
 import {Todo} from './Todo/Todo';
 import {TodoCreateForm} from './TodoCreateForm';
 import createGuid from '../../Helper/Guid';
-import {Toolbar} from './Toolbar';
+import {Toolbar} from './Toolbar/Toolbar';
 import {TodoEditForm} from './TodoCreateForm';
+import './TodoList.less';
 
 const mapStateToProps = (state) =>
     ({
@@ -60,7 +61,7 @@ export class TodoList extends React.Component {
 
         var selected = this.props.todos.some(todo => todo.isSelected);
 
-        return (<div>
+        return (<div className="TodoList">
                     <TodoCreateForm handleCreateTodo={this.handleTodoCreate.bind(this)} />
                     <Toolbar selected={selected}
                              handleSelectionChange={self.props.ToggleSelectionAll}

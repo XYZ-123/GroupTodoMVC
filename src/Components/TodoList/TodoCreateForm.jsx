@@ -10,8 +10,8 @@ export class TodoCreateForm extends React.Component {
     render ()
     {
         return (<div>
-                    <input ref="title" />&nbsp;
-                    <button  onClick={this.onSave.bind(this)}>Save</button>
+                    <input className="form-control TodoInput" ref="title" />&nbsp;
+                    <button className="btn btn-primary" onClick={this.onSave.bind(this)}>Save</button>
                 </div>)
     }
 }

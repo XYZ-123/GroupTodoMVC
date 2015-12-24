@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router';
 import {MainWindow} from './Main';
-import {Statistics} from './Components/Statistics/Statistics';
+import Statistics from './Components/Statistics/Statistics';
 import TodoList from './Components/TodoList/TodoList';
 
 
