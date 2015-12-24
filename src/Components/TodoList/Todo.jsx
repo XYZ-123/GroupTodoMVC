@@ -1,0 +1,38 @@
+import React from 'react';
+
+export class Todo extends React.Component {
+    constructor(props)
+    {
+        super(props);
+    }
+    onEdit(e)
+    {
+        e.preventDefault();
+        this.props.handleTodoEdit(this.props.id)
+    }
+    onComplete(e)
+    {
+        e.preventDefault();
+        this.props.handleTodoComplete(this.props.id, !this.props.isCompleted);
+    }
+    onDelete(e)
+    {
+        e.preventDefault();
+        this.props.handleTodoDelete(this.props.id);
+    }
+    onCheckboxClick()
+    {
+        this.props.handleTodoSelect(this.props.id, !this.props.isSelected);
+    }
+    render ()
+    {
+        return (<div>
+                    <input type="checkbox" checked={this.props.isSelected} onClick={this.onCheckboxClick.bind(this)} />
+                    <b>{this.props.title}</b>&nbsp;<span>Status :{this.props.isCompleted ? "Done":"Not done"}</span>
+                    <a onClick={this.onEdit.bind(this)}> Edit </a>
+                    <a onClick={this.onComplete.bind(this)}> {!this.props.isCompleted ? "Complete": "Reopen"}</a>
+                    <a onClick={this.onDelete.bind(this)}> Delete </a>
+                    }
+                </div>)
+    }
+}

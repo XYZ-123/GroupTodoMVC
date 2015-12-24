@@ -5,4 +5,4 @@ import {createAction} from 'redux-actions';
 
 export const DELETE_TODO = 'DELETE_TODO';
 
-export default createAction(DELETE_TODO, id => id);
+export default createAction(DELETE_TODO, id => ({id}) );

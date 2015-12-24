@@ -9,15 +9,16 @@ export function todos(state=[], action = {})
     switch(action.type)
     {
         case actionTypes.CREATE_TODO:
-            return [...state.todos, action.todo];
+            return [...state.todos, action.payload.todo];
         case actionTypes.UPDATE_TODO:
-            return state.map(item => item.id === action.id ? Object.assign({}, item, ...action.todo): item);
+            return state.map(item => item.id === action.payload.todo.id ? Object.assign({}, item, action.payload.todo): item);
         case actionTypes.DELETE_TODO:
-            return state.filter(item => item.id !== action.id);
+            debugger;
+            return state.filter(item => item.id !== action.payload.id);
         case actionTypes.TOGGLE_SELECTION_ALL:
-            return state.map(item => Object.assign({}, item, {isSelected: action.selection}));
+            return state.map(item => Object.assign({}, item, {isSelected: action.payload.selection}));
         case actionTypes.UPDATE_SELECTED_TODOS:
-            return state.map(item => item.isSelected ? Object.assign({}, item, {isCompleted: action.isCompleted}): item);
+            return state.map(item => item.isSelected ? Object.assign({}, item, {isCompleted: action.payload.isCompleted}): item);
         case actionTypes.DELETE_SELECTED_TODOS:
             return state.filter(item => !item.isSelected);
         case actionTypes.LOAD_TODOS:
