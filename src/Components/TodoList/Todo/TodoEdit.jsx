@@ -14,7 +14,7 @@ export class TodoEdit extends React.Component {
     }
     render ()
     {
-        return (<div>
+        return (<div >
             <input ref="title" defaultValue={this.props.title}/>&nbsp;
             <a href="javascript:void(0)" onClick={this.onSave.bind(this)}>Save</a>&nbsp;
             <a href="javascript:void(0)" onClick={this.onCancel.bind(this)}>Cancel</a>

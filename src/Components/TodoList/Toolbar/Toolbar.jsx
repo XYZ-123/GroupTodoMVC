@@ -1,4 +1,5 @@
 import React from 'react';
+import './Toolbar.less';
 
 export class Toolbar extends React.Component {
     constructor(props)

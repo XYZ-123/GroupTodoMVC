@@ -14,7 +14,6 @@ import {Statistics} from './Components/Statistics/Statistics';
 import {TodoList} from './Components/TodoList/TodoList';
 import getRoutes from './Routes';
 import {reducers} from './Reducers/App';
-import LoadTodos from './Actions/LoadTodos';
 import './Main.less';
 
 export class MainWindow extends React.Component {
@@ -46,8 +45,6 @@ const rootReducer = combineReducers(Object.assign({}, reducers, {
 let store = createStoreWithMiddleware(rootReducer);
 let history = createBrowserHistory();
 syncReduxAndRouter(history, store);
-store.dispatch(LoadTodos());
-console.log(store.getState());
 
 ReactDOM.render(<Provider store={store}>
                     <Router history={history}>

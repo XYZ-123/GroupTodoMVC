@@ -26,11 +26,14 @@ export class TodoView extends React.Component {
 
     render() {
         return (<div>
-            <input type="checkbox" checked={this.props.isSelected} onClick={this.onCheckboxClick.bind(this)}/>
-            <b>{this.props.title}</b>&nbsp;<span>Status: {this.props.isCompleted ? "Done" : "Not done"}</span>&nbsp;
-            <a href="javascript:void(0)" onClick={this.onEdit.bind(this)}>Edit</a>&nbsp;
-            <a href="javascript:void(0)" onClick={this.onComplete.bind(this)}>{!this.props.isCompleted ? "Complete" : "Reopen"}</a>&nbsp;
-            <a href="javascript:void(0)" onClick={this.onDelete.bind(this)}>Delete</a>
-        </div>)
+                <input type="checkbox" checked={this.props.isSelected} onClick={this.onCheckboxClick.bind(this)}/>
+                <div className="row"><b>{this.props.title}</b>&nbsp;<span className="status">Status: {this.props.isCompleted ? "Done" : "Not done"}</span>&nbsp;
+                    <div className="actions">
+                        <a href="javascript:void(0)" onClick={this.onEdit.bind(this)}>Edit</a>&nbsp;
+                        <a href="javascript:void(0)" onClick={this.onComplete.bind(this)}>{!this.props.isCompleted ? "Complete" : "Reopen"}</a>&nbsp;
+                        <a href="javascript:void(0)" onClick={this.onDelete.bind(this)}>Delete</a>
+                    </div>
+                    </div>
+                </div>)
     }
 }

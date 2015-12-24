@@ -2,6 +2,7 @@ import React from 'react';
 
 import {TodoView} from './TodoView';
 import {TodoEdit} from './TodoEdit';
+import './Todo.less';
 
 export class Todo extends React.Component {
     constructor(props)
@@ -13,7 +14,6 @@ export class Todo extends React.Component {
         return this.props.todo.id;
     }
     onEdit() {
-        debugger;
         this.props.handleTodoEditChange(this.id)
     }
     onComplete()
@@ -39,7 +39,7 @@ export class Todo extends React.Component {
     render ()
     {
         let model = this.props.todo;
-        return (<div>
+        return (<div className="todo">
                     {   model.isEdited ?
                         <TodoEdit
                             title={model.title}

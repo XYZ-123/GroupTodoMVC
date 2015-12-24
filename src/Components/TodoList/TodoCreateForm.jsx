@@ -11,7 +11,7 @@ export class TodoCreateForm extends React.Component {
     {
         return (<div>
                     <input className="form-control TodoInput" ref="title" />&nbsp;
-                    <button className="btn btn-primary" onClick={this.onSave.bind(this)}>Save</button>
+                    <button className="btn btn-primary" onClick={this.onSave.bind(this)}>Add</button>
                 </div>)
     }
 }

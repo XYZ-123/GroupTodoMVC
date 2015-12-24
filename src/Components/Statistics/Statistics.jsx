@@ -21,7 +21,7 @@ export class Statistics extends React.Component {
     {
         let todos = this.props.todos;
         let percentage = (todos.filter(todo => todo.isCompleted).length / todos.length) * 100;
-        return (<div><b>Done: </b> {percentage}%</div>);
+        return (<div style={{textAlign:"center"}}><b>Done: </b> {percentage}%</div>);
     }
 }
 
