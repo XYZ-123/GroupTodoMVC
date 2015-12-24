@@ -2,14 +2,13 @@
  * Created by aru on 12/23/2015.
  */
 import actionTypes from '../Actions/actionTypes';
-import {getNewState} from '../Helper/GetNewState';
 
 export function todos(state=[], action = {})
 {
     switch(action.type)
     {
         case actionTypes.CREATE_TODO:
-            return [...state.todos, action.payload.todo];
+            return [...state, action.payload];
         case actionTypes.UPDATE_TODO:
             return state.map(item => item.id === action.payload.todo.id ? Object.assign({}, item, action.payload.todo): item);
         case actionTypes.DELETE_TODO:

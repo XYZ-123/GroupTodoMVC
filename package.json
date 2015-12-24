@@ -43,11 +43,13 @@
     "react-dom": "^0.14.3",
     "redux": "^3.0.5",
     "redux-actions": "^0.9.0",
+    "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "history": "^1.13.1",
+    "normalize.css": "^3.0.3",
     "react-redux": "^4.0.3",
     "react-router": "^1.0.2",
     "redux-simple-router": "^1.0.1",

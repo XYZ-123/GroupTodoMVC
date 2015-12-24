@@ -7,6 +7,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {Provider} from 'react-redux';
 import {Router, Link} from 'react-router';
 import {syncReduxAndRouter, routeReducer} from 'redux-simple-router';
+import 'normalize.css';
 
 // custom imports
 import {Statistics} from './Components/Statistics/Statistics';
@@ -14,6 +15,7 @@ import {TodoList} from './Components/TodoList/TodoList';
 import getRoutes from './Routes';
 import {reducers} from './Reducers/App';
 import LoadTodos from './Actions/LoadTodos';
+
 
 export class MainWindow extends React.Component {
     constructor(props)

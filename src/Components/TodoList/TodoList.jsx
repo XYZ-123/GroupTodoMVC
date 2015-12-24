@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import actions from '../../Actions/actions';
 import {Todo} from './Todo';
+import {TodoCreateForm} from './TodoCreateForm';
+import createGuid from '../../Helper/Guid';
 
 const mapStateToProps = (state) =>
     ({
@@ -16,6 +18,11 @@ export class TodoList extends React.Component {
     constructor(props)
     {
         super(props);
+    }
+    handleTodoCreate(title)
+    {
+        let id = createGuid();
+        this.props.CreateTodo({id,title});
     }
     handleTodoSelect(id, isSelected)
     {
@@ -44,8 +51,12 @@ export class TodoList extends React.Component {
     {
         console.log(this.props);
         let self = this;
-        var todos = this.props.todos.map((todo)=><Todo {...todo} handleTodoSelect={self.handleTodoSelect.bind(self)} handleTodoComplete={self.handleTodoComplete.bind(self)} handleTodoEdit={self.handleTodoEdit.bind(self)} handleTodoDelete={self.handleTodoDelete.bind(self)} />)
-        return (<div>{todos}</div>);
+        let todos = this.props.todos.map((todo)=><Todo {...todo} handleTodoSelect={self.handleTodoSelect.bind(self)} handleTodoComplete={self.handleTodoComplete.bind(self)} handleTodoEdit={self.handleTodoEdit.bind(self)} handleTodoDelete={self.handleTodoDelete.bind(self)} />)
+
+        return (<div>
+                    <TodoCreateForm handleCreateTodo={this.handleTodoCreate.bind(this)} />
+                    {todos}
+                </div>);
     }
 }
 
